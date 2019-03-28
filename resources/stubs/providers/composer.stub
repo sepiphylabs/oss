@@ -1,0 +1,46 @@
+{
+    "name": "%name%",
+    "description": "%description%",
+    "keywords": ["sepiphylabs", "oss"],
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/sepiphylabs/oss",
+    "support": {
+        "issues": "https://github.com/sepiphylabs/oss/issues",
+        "source": "https://github.com/sepiphylabs/oss"
+    },
+    "authors": [
+        {
+            "name": "Quynh Xuan Nguyen",
+            "email": "seriquynh@gmail.com",
+            "homepage": "https://seriquynh.com",
+            "role": "Software Developer"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Foo\\Bar\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Foo\\Bar\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
