@@ -1,0 +1,16 @@
+{
+    "name": "sepiphylabs/oss",
+    "description": "Create your own open-sourced software package easily.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Quynh Xuan Nguyen",
+            "email": "seriquynh@gmail.com",
+            "homepage": "https://seriquynh.com",
+            "role": "Software Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
