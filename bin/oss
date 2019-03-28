@@ -12,10 +12,10 @@
 
 if (is_file($autoloadFile = __DIR__.'/../vendor/autoload.php')) {
     require $autoloadFile;
-} elseif (is_file($autoloadFile = __DIR__.'/../../vendor/autoload.php')) {
+} elseif (is_file($autoloadFile = __DIR__.'/../../../vendor/autoload.php')) {
     require $autoloadFile;
 } else {
-    die('You must set up the project dependencies.');
+    die('You must set up the project dependencies.'.PHP_EOL);
 }
 
 $application = new SepiphyLabs\Oss\Application;
