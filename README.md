@@ -2,22 +2,14 @@
 
 Create your own open-sourced software package easily.
 
-## Requirements
+## Documentation
 
-- TODO
-
-## Installation
-
-- TODO
-
-## Usage
-
-- TODO
+- Please read the [DOCUMENTATION](docs/docs.md).
 
 ## Contributing
 
-- Please view [CONTRIBUTING.md](CONTRIBUTING.md) for more details!
+- Please read the [CONTRIBUTING](CONTRIBUTING.md).
 
 ## License
 
-- Please view [LICENSE.md](LICENSE.md) for more details!
+- Please read the [LICENSE](LICENSE.md).
