@@ -3,6 +3,7 @@
     "description": "Create your own open-sourced software package easily.",
     "type": "library",
     "license": "MIT",
+    "keywords": ["sepiphylabs", "sepiphy", "oss"],
     "homepage": "https://github.com/sepiphylabs/oss",
     "support": {
         "issues": "https://github.com/sepiphylabs/oss/issues",
