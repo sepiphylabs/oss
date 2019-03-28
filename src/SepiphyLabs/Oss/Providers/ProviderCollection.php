@@ -35,7 +35,7 @@ class ProviderCollection implements ProviderCollectionInterface
     public function find(string $name): ProviderInterface
     {
         foreach ($this->providers as $provider) {
-            if ($provider->getName() === $name) {
+            if ($provider->getName() === $name || in_array($name, $provider->getAliases(), true)) {
                 return $provider;
             }
         }

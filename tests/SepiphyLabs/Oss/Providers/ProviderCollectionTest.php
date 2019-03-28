@@ -24,12 +24,14 @@ class ProviderCollectionTest extends TestCase
         m::close();
     }
 
-    public function testFindMethod()
+    public function testFindName()
     {
         $p1 = m::mock(ProviderInterface::class);
         $p1->shouldReceive('getName')->andReturn('p1');
+        $p1->shouldReceive('getAliases')->andReturn([]);
         $p2 = m::mock(ProviderInterface::class);
         $p2->shouldReceive('getName')->andReturn('p2');
+        $p2->shouldReceive('getAliases')->andReturn([]);
 
         $providers = new ProviderCollection([$p1, $p2]);
 
@@ -37,14 +39,29 @@ class ProviderCollectionTest extends TestCase
         $this->assertSame($p2, $providers->find('p2'));
     }
 
+    public function testFindAliases()
+    {
+        $provider = m::mock(ProviderInterface::class);
+        $provider->shouldReceive('getName')->andReturn('p');
+        $provider->shouldReceive('getAliases')->andReturn($aliases = ['p1', 'p2', 'p3']);
+
+        $providers = new ProviderCollection([$provider]);
+
+        foreach ($aliases as $alias) {
+            $this->assertSame($provider, $providers->find($alias));
+        }
+    }
+
     public function testFindThrowsNotFoundException()
     {
         $this->expectException(NotFoundException::class);
 
         $p1 = m::mock(ProviderInterface::class);
-        $p1->shouldReceive('getName')->once()->andReturn('p1');
+        $p1->shouldReceive('getName')->andReturn('p1');
+        $p1->shouldReceive('getAliases')->andReturn([]);
         $p2 = m::mock(ProviderInterface::class);
-        $p2->shouldReceive('getName')->once()->andReturn('p2');
+        $p2->shouldReceive('getName')->andReturn('p2');
+        $p2->shouldReceive('getAliases')->andReturn([]);
 
         $providers = new ProviderCollection([$p1, $p2]);
 
