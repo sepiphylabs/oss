@@ -11,12 +11,11 @@
 
 namespace SepiphyLabs\Oss;
 
+use Illuminate\Container\Container;
 use Psr\Container\ContainerInterface;
 use SepiphyLabs\Oss\Commands\InitCommand;
 use SepiphyLabs\Oss\Providers\ComposerProvider;
 use SepiphyLabs\Oss\Providers\ProviderCollection;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Application as BaseApplication;
 
 class Application extends BaseApplication
@@ -36,19 +35,10 @@ class Application extends BaseApplication
         parent::__construct('Oss', 'v1.0-dev');
 
         $this->container = new Container;
-    }
 
-    protected function bootstrap(): self
-    {
-        $this->container->set('stubs_dir', realpath(__DIR__.'/../../../resources/stubs'));
-
-        $this->container->singleton('providers.composer', function (ContainerInterface $container) {
-            return new ComposerProvider($container->get('stubs_dir'));
-        });
-
-        $this->container->singleton('providers', function (ContainerInterface $container) {
+        $this->container->singleton('providers', function () {
             return new ProviderCollection([
-                $container->get('providers.composer'),
+                new ComposerProvider,
             ]);
         });
 
@@ -61,15 +51,5 @@ class Application extends BaseApplication
         $this->add($this->container->get('commands.init'));
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function run(InputInterface $input = null, OutputInterface $output = null)
-    {
-        $this->bootstrap();
-
-        return parent::run($input, $output);
     }
 }

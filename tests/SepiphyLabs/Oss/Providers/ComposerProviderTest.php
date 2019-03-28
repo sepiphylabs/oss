@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\SepiphyLabs\Oss;
+namespace Tests\SepiphyLabs\Oss\Providers;
 
 use PHPUnit\Framework\TestCase;
-use SepiphyLabs\Oss\Application;
+use SepiphyLabs\Oss\Providers\ComposerProvider;
 
-class ApplicationTest extends TestCase
+class ComposerProviderTest extends TestCase
 {
-    public function testConstructor()
+    public function testGetName()
     {
-        $application = new Application;
+        $provider = new ComposerProvider;
 
-        $this->assertSame('Oss', $application->getName());
+        $this->assertSame('composer', $provider->getName());
     }
 }

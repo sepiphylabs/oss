@@ -1,10 +1,10 @@
 ## About
 
-Describe about this package.
+%package_description%
 
 ## Documentation
 
-- Please read the [DOCUMENTATION](%DOCS_ADDRESS%).
+- Please read the [DOCUMENTATION](docs/docs.md).
 
 ## Contributing
 

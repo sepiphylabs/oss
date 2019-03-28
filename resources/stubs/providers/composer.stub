@@ -1,20 +1,13 @@
 {
-    "name": "%name%",
-    "description": "%description%",
-    "keywords": ["sepiphylabs", "oss"],
+    "name": "%package_name%",
+    "description": "%package_description%",
+    "keywords": [],
     "type": "library",
     "license": "MIT",
-    "homepage": "https://github.com/sepiphylabs/oss",
-    "support": {
-        "issues": "https://github.com/sepiphylabs/oss/issues",
-        "source": "https://github.com/sepiphylabs/oss"
-    },
     "authors": [
         {
-            "name": "Quynh Xuan Nguyen",
-            "email": "seriquynh@gmail.com",
-            "homepage": "https://seriquynh.com",
-            "role": "Software Developer"
+            "name": "%author_name%",
+            "email": "%author_email%"
         }
     ],
     "require": {

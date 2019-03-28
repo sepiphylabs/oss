@@ -9,9 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace SepiphyLabs\Oss\Providers;
+namespace SepiphyLabs\Oss\Providers\Exceptions;
 
-abstract class Provider implements ProviderInterface
+use Throwable;
+
+interface ExceptionInterface extends Throwable
 {
     //
 }

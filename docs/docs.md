@@ -25,4 +25,8 @@ oss --version
 
 ## Usage
 
-- TODO
+Create your oss package by running the command below.
+
+```bash
+oss init /path/to/expdir
+```

@@ -53,19 +53,23 @@ class InitCommand extends Command
      */
     protected function handle()
     {
-        $directory = $this->io->input->getArgument('directory');
-
-        $options['name'] = $this->io->output->ask('What is the package name?');
-        $options['description'] = $this->io->output->ask('What is the package description?');
-
         $provider = $this->providers->find(
             $providerName = $this->io->input->getOption('provider')
         );
 
+        $options['package_name'] = $name = $this->io->output->ask('What is the package name?', 'foo/bar');
+        $options['package_description'] = $this->io->output->ask(
+            'What is the package description?', 'Enjoy coding everyday.'
+        );
+        $options['author_name'] = $this->io->output->ask('What is the author name?', 'Foo Bar');
+        $options['author_email'] = $this->io->output->ask('What is the author email?', 'foo@bar.com');
+
+        $directory = $this->io->input->getArgument('directory');
+
         $provider->initPackage($directory, $options);
 
         $this->io->output->success(
-            sprintf('Create %s package "%s" at "%s".', $providerName, $options['name'], $directory)
+            sprintf('Create %s package "%s" at "%s".', $providerName, $name, $directory)
         );
     }
 }
