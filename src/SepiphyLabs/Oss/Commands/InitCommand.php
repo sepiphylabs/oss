@@ -13,9 +13,28 @@ namespace SepiphyLabs\Oss\Commands;
 
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use SepiphyLabs\Oss\Providers\ProviderCollectionInterface;
 
 class InitCommand extends Command
 {
+    /**
+     * @var ProviderCollectionInterface
+     */
+    protected $providers;
+
+    /**
+     * Create a new InitCommand instance.
+     *
+     * @param ProviderCollectionInterface $providers
+     * @return void
+     */
+    public function __construct(ProviderCollectionInterface $providers)
+    {
+        parent::__construct();
+
+        $this->providers = $providers;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -24,7 +43,7 @@ class InitCommand extends Command
         $this
             ->setName('init')
             ->setDescription('Initialize an open-sourced software package.')
-            ->addArgument('name', InputArgument::REQUIRED, 'The package name.')
+            ->addArgument('directory', InputArgument::REQUIRED, 'The package directory.')
             ->addOption('provider', 'p', InputOption::VALUE_OPTIONAL, 'The package provider.', 'composer')
         ;
     }
@@ -34,6 +53,19 @@ class InitCommand extends Command
      */
     protected function handle()
     {
-        $this->io->output->success('Create an oss package named "'.$this->io->input->getArgument('name').'".');
+        $directory = $this->io->input->getArgument('directory');
+
+        $options['name'] = $this->io->output->ask('What is the package name?');
+        $options['description'] = $this->io->output->ask('What is the package description?');
+
+        $provider = $this->providers->find(
+            $providerName = $this->io->input->getOption('provider')
+        );
+
+        $provider->initPackage($directory, $options);
+
+        $this->io->output->success(
+            sprintf('Create %s package "%s" at "%s".', $providerName, $options['name'], $directory)
+        );
     }
 }

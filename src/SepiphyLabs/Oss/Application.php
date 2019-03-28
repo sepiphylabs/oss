@@ -11,19 +11,20 @@
 
 namespace SepiphyLabs\Oss;
 
+use Psr\Container\ContainerInterface;
 use SepiphyLabs\Oss\Commands\InitCommand;
-use SepiphyLabs\Oss\Commands\Command as OssCommand;
+use SepiphyLabs\Oss\Providers\ComposerProvider;
+use SepiphyLabs\Oss\Providers\ProviderCollection;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Application as BaseApplication;
-use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class Application extends BaseApplication
 {
     /**
-     * @var Oss
+     * @var Container
      */
-    protected $oss;
+    protected $container;
 
     /**
      * Create a new Application instance.
@@ -34,24 +35,30 @@ class Application extends BaseApplication
     {
         parent::__construct('Oss', 'v1.0-dev');
 
-        $this->oss = new Oss;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function add(SymfonyCommand $command)
-    {
-        if ($command instanceof OssCommand) {
-            $command->setOss($this->oss);
-        }
-
-        return parent::add($command);
+        $this->container = new Container;
     }
 
     protected function bootstrap(): self
     {
-        $this->add(new InitCommand);
+        $this->container->set('stubs_dir', realpath(__DIR__.'/../../../resources/stubs'));
+
+        $this->container->singleton('providers.composer', function (ContainerInterface $container) {
+            return new ComposerProvider($container->get('stubs_dir'));
+        });
+
+        $this->container->singleton('providers', function (ContainerInterface $container) {
+            return new ProviderCollection([
+                $container->get('providers.composer'),
+            ]);
+        });
+
+        $this->container->singleton('commands.init', function (ContainerInterface $container) {
+            return new InitCommand(
+                $container->get('providers')
+            );
+        });
+
+        $this->add($this->container->get('commands.init'));
 
         return $this;
     }

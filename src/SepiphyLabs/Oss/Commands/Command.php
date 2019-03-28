@@ -11,7 +11,6 @@
 
 namespace SepiphyLabs\Oss\Commands;
 
-use SepiphyLabs\Oss\Oss;
 use SepiphyLabs\Oss\CommandIO;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,33 +19,9 @@ use Symfony\Component\Console\Command\Command as BaseCommand;
 abstract class Command extends BaseCommand
 {
     /**
-     * @var Oss
-     */
-    protected $oss;
-
-    /**
      * @var CommandIO
      */
     protected $io;
-
-    /**
-     * @return Oss
-     */
-    public function getOss(): Oss
-    {
-        return $this->oss;
-    }
-
-    /**
-     * @param Oss $oss
-     * @return self
-     */
-    public function setOss(Oss $oss): self
-    {
-        $this->oss = $oss;
-
-        return $this;
-    }
 
     /**
      * {@inheritdoc}
@@ -65,7 +40,7 @@ abstract class Command extends BaseCommand
     }
 
     /**
-     *
+     * Handle the process.
      */
     abstract protected function handle();
 }
