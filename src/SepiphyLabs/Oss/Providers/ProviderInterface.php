@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the Sepiphy package.
+ * This file is part of the SepiphyLabs package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -19,6 +19,20 @@ interface ProviderInterface
      * @return string
      */
     public function getName(): string;
+
+    /**
+     * Get the provider aliases.
+     *
+     * @return string[]
+     */
+    public function getAliases(): array;
+
+    /**
+     * Get the declaration file name.
+     *
+     * @return string
+     */
+    public function getFileName(): string;
 
     /**
      * Init a fresh package.

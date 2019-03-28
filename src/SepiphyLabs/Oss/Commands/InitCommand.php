@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the Sepiphy package.
+ * This file is part of the SepiphyLabs package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -11,6 +11,7 @@
 
 namespace SepiphyLabs\Oss\Commands;
 
+use Sepiphy\PHPTools\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use SepiphyLabs\Oss\Providers\ProviderCollectionInterface;
@@ -54,21 +55,21 @@ class InitCommand extends Command
     protected function handle()
     {
         $provider = $this->providers->find(
-            $providerName = $this->io->input->getOption('provider')
+            $providerName = $this->io->option('provider')
         );
 
-        $options['package_name'] = $name = $this->io->output->ask('What is the package name?', 'foo/bar');
-        $options['package_description'] = $this->io->output->ask(
+        $options['package_name'] = $name = $this->io->ask('What is the package name?', 'foo/bar');
+        $options['package_description'] = $this->io->ask(
             'What is the package description?', 'Enjoy coding everyday.'
         );
-        $options['author_name'] = $this->io->output->ask('What is the author name?', 'Foo Bar');
-        $options['author_email'] = $this->io->output->ask('What is the author email?', 'foo@bar.com');
+        $options['author_name'] = $this->io->ask('What is the author name?', 'Foo Bar');
+        $options['author_email'] = $this->io->ask('What is the author email?', 'foo@bar.com');
 
-        $directory = $this->io->input->getArgument('directory');
+        $directory = $this->io->argument('directory');
 
         $provider->initPackage($directory, $options);
 
-        $this->io->output->success(
+        $this->io->success(
             sprintf('Create %s package "%s" at "%s".', $providerName, $name, $directory)
         );
     }

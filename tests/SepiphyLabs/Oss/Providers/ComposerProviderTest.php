@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the Sepiphy package.
+ * This file is part of the SepiphyLabs package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -21,5 +21,19 @@ class ComposerProviderTest extends TestCase
         $provider = new ComposerProvider;
 
         $this->assertSame('composer', $provider->getName());
+    }
+
+    public function testGetAliases()
+    {
+        $provider = new ComposerProvider;
+
+        $this->assertEquals(['php'], $provider->getAliases());
+    }
+
+    public function testGetFileName()
+    {
+        $provider = new ComposerProvider;
+
+        $this->assertSame('composer', $provider->getFileName());
     }
 }

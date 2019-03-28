@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<EOF
-This file is part of the Sepiphy package.
+This file is part of the SepiphyLabs package.
 
 (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
 
