@@ -15,6 +15,7 @@ use Sepiphy\PHPTools\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use SepiphyLabs\Oss\Providers\ProviderCollectionInterface;
+use SepiphyLabs\Oss\Providers\ProviderInterface;
 
 class InitCommand extends Command
 {
@@ -45,7 +46,6 @@ class InitCommand extends Command
             ->setName('init')
             ->setDescription('Initialize an open-sourced software package.')
             ->addArgument('directory', InputArgument::REQUIRED, 'The package directory.')
-            ->addOption('provider', 'p', InputOption::VALUE_OPTIONAL, 'The package provider.', 'composer')
         ;
     }
 
@@ -54,23 +54,30 @@ class InitCommand extends Command
      */
     protected function handle()
     {
-        $provider = $this->providers->find(
-            $providerName = $this->io->option('provider')
-        );
+        $providerNames = array_map(function (ProviderInterface $provider) {
+            return $provider->getName();
+        }, (array) $this->providers->all());
 
-        $options['package_name'] = $name = $this->io->ask('What is the package name?', 'foo/bar');
-        $options['package_description'] = $this->io->ask(
-            'What is the package description?', 'Enjoy coding everyday.'
-        );
-        $options['author_name'] = $this->io->ask('What is the author name?', 'Foo Bar');
-        $options['author_email'] = $this->io->ask('What is the author email?', 'foo@bar.com');
+        $providerName = $this->io->choice('What provider do you want to create a package for?', $providerNames);
+
+        $provider = $this->providers->find($providerName);
+
+        $options = [];
+        $listing = [];
+
+        foreach ($provider->needs() as [$key, $question, $default]) {
+            $options[$key] = $value = $this->io->ask($question, $default);
+            $listing[] = sprintf('%s: %s', $key, $value);
+        }
 
         $directory = $this->io->argument('directory');
 
         $provider->initPackage($directory, $options);
 
-        $this->io->success(
-            sprintf('Create %s package "%s" at "%s".', $providerName, $name, $directory)
-        );
+        $this->io->success('Created package successully.');
+
+        $this->io->note('Check your package information here:');
+
+        $this->io->listing($listing);
     }
 }

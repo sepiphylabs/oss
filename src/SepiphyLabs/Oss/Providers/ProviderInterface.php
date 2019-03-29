@@ -35,6 +35,13 @@ interface ProviderInterface
     public function getFileName(): string;
 
     /**
+     * Ask any neccessary information.
+     *
+     * @return array
+     */
+    public function needs(): array;
+
+    /**
      * Init a fresh package.
      *
      * @param string $directory

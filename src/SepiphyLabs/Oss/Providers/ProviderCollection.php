@@ -30,6 +30,14 @@ class ProviderCollection implements ProviderCollectionInterface
     }
 
     /**
+     * @return iterable
+     */
+    public function all(): iterable
+    {
+        return $this->providers;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function find(string $name): ProviderInterface

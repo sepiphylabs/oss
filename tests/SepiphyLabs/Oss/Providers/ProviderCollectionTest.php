@@ -24,6 +24,18 @@ class ProviderCollectionTest extends TestCase
         m::close();
     }
 
+    public function testAllMethod()
+    {
+        $p1 = m::mock(ProviderInterface::class);
+        $p1->shouldReceive('getName')->andReturn('p1');
+        $p2 = m::mock(ProviderInterface::class);
+        $p2->shouldReceive('getName')->andReturn('p2');
+
+        $providers = new ProviderCollection([$p1, $p2]);
+
+        $this->assertEquals([$p1, $p2], $providers->all());
+    }
+
     public function testFindName()
     {
         $p1 = m::mock(ProviderInterface::class);

@@ -16,6 +16,13 @@ use SepiphyLabs\Oss\Providers\Exceptions\ExceptionInterface;
 interface ProviderCollectionInterface
 {
     /**
+     * Get all providers.
+     *
+     * @return iterable
+     */
+    public function all(): iterable;
+
+    /**
      * Find a provider by name.
      *
      * @param string $name

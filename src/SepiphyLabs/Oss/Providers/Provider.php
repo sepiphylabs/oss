@@ -26,6 +26,19 @@ abstract class Provider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
+    public function needs(): array
+    {
+        return [
+            ['package_name', 'What is the package name?', 'foo/bar'],
+            ['package_description', 'What is the package description?', 'Enjoy coding everyday.'],
+            ['author_name', 'What is the author name?', 'Foo Bar'],
+            ['author_email', 'What is the author email?', 'foo@bar.com'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function initPackage(string $directory, array $options = []): void
     {
         $this
@@ -46,7 +59,9 @@ abstract class Provider implements ProviderInterface
         }
 
         foreach (['.github', 'docs', 'src', 'tests'] as $dirname) {
-            mkdir($directory.'/'.$dirname, 0755, true);
+            if (!file_exists($directory.'/'.$dirname)) {
+                mkdir($directory.'/'.$dirname, 0755, true);
+            }
         }
 
         return $this;
@@ -72,7 +87,13 @@ abstract class Provider implements ProviderInterface
         $content = strtr(file_get_contents($this->stubsDir.'/CODE_OF_CONDUCT.stub'), $replacements);
         file_put_contents($directory.'/CODE_OF_CONDUCT.md', $content);
 
-        // .github
+        // git
+        $content = file_get_contents($this->stubsDir.'/git/gitattributes.stub');
+        file_put_contents($directory.'/.gitattributes', $content);
+        $content = file_get_contents($this->stubsDir.'/git/gitignore.stub');
+        file_put_contents($directory.'/.gitignore', $content);
+
+        // github
         $content = file_get_contents($this->stubsDir.'/github/PULL_REQUEST_TEMPLATE.stub');
         file_put_contents($directory.'/.github/PULL_REQUEST_TEMPLATE.md', $content);
 
@@ -87,6 +108,13 @@ abstract class Provider implements ProviderInterface
         return $this;
     }
 
+    /**
+     * Add final tasks to finis initializing package.
+     *
+     * @param string $directory
+     * @param array $options
+     * @return void
+     */
     protected function finalTasks(string $directory, array $options = []): void
     {
         //

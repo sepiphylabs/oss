@@ -36,4 +36,22 @@ class ComposerProvider extends Provider
     {
         return 'composer';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function needs(): array
+    {
+        return array_merge(parent::needs(), [
+            //
+        ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function finalTasks(string $directory, array $options = []): void
+    {
+        //
+    }
 }
