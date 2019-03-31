@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace SepiphyLabs\Oss;
+namespace Sericode\Oss;
 
-use SepiphyLabs\Oss\Commands\InitCommand;
-use SepiphyLabs\Oss\Providers\ComposerProvider;
-use SepiphyLabs\Oss\Providers\ProviderCollection;
+use Sericode\Oss\Commands\InitCommand;
+use Sericode\Oss\Providers\ComposerProvider;
+use Sericode\Oss\Providers\ProviderCollection;
 use Symfony\Component\Console\Application as BaseApplication;
 
 class Application extends BaseApplication
@@ -27,9 +27,10 @@ class Application extends BaseApplication
     {
         parent::__construct('Oss', 'v1.0-dev');
 
-        $providers = new ProviderCollection([
-            new ComposerProvider,
-        ]);
+        $composer = new ComposerProvider;
+        $composer->setStubsDir(realpath(__DIR__.'/../resources/stubs'));
+
+        $providers = new ProviderCollection([$composer]);
 
         $this->add(new InitCommand($providers));
 

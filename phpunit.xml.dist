@@ -14,8 +14,8 @@
     verbose="true"
 >
     <testsuites>
-        <testsuite name="SepiphyLabs Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="Sericode Test Suite">
+            <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>

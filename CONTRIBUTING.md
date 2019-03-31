@@ -1,6 +1,6 @@
 ## Contributing
 
-- Thank you for considering contributing the `sepiphylabs/oss` package!
+- Thank you for considering contributing the `sericode/oss` package!
 
 - Please read the [code of conduct](CODE_OF_CONDUCT.md) before contributing!
 

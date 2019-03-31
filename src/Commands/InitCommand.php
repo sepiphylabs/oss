@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace SepiphyLabs\Oss\Commands;
+namespace Sericode\Oss\Commands;
 
 use Sepiphy\PHPTools\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use SepiphyLabs\Oss\Providers\ProviderCollectionInterface;
-use SepiphyLabs\Oss\Providers\ProviderInterface;
+use Sericode\Oss\Providers\ProviderCollectionInterface;
+use Sericode\Oss\Providers\ProviderInterface;
 
 class InitCommand extends Command
 {
@@ -54,11 +54,15 @@ class InitCommand extends Command
      */
     protected function handle()
     {
-        $providerNames = array_map(function (ProviderInterface $provider) {
-            return $provider->getName();
-        }, (array) $this->providers->all());
+        $providerNames = $providerChoices = [];
 
-        $providerName = $this->io->choice('What provider do you want to create a package for?', $providerNames);
+        foreach ($this->providers->all() as $provider) {
+            $providerChoices[] = $choice = $provider->getName().' ('.implode(', ', $provider->getAliases()).')';
+            $providerNames[$choice] = $provider->getName();
+        }
+
+        $providerChoice = $this->io->choice('What provider do you want to create a package for?', $providerChoices);
+        $providerName = $providerNames[$providerChoice];
 
         $provider = $this->providers->find($providerName);
 

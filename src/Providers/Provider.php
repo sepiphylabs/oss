@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SepiphyLabs\Oss\Providers;
+namespace Sericode\Oss\Providers;
 
 abstract class Provider implements ProviderInterface
 {
@@ -18,9 +18,23 @@ abstract class Provider implements ProviderInterface
      */
     protected $stubsDir;
 
-    public function __construct()
+    /**
+     * @return string
+     */
+    public function getStubsDir(): string
     {
-        $this->stubsDir = realpath(__DIR__.'/../../../../resources/stubs');
+        return $this->stubsDir;
+    }
+
+    /**
+     * @param string $stubsDir
+     * @return self
+     */
+    public function setStubsDir(string $stubsDir): self
+    {
+        $this->stubsDir = $stubsDir;
+
+        return $this;
     }
 
     /**
@@ -41,18 +55,16 @@ abstract class Provider implements ProviderInterface
      */
     public function initPackage(string $directory, array $options = []): void
     {
-        $this
-            ->prepareDirectory($directory, $options)
-            ->prepareBaseFiles($directory, $options)
-            ->finalTasks($directory, $options)
-        ;
+        $replacements = $this->getReplacements($options);
+
+        $this->prepareDirs($directory)->prepareFiles($directory, $replacements);
     }
 
     /**
      * @param string $directory
      * @return self
      */
-    protected function prepareDirectory(string $directory, array $options = []): self
+    protected function prepareDirs(string $directory): self
     {
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
@@ -71,10 +83,8 @@ abstract class Provider implements ProviderInterface
      * @param string $directory
      * @return self
      */
-    protected function prepareBaseFiles(string $directory, array $options = []): self
+    protected function prepareFiles(string $directory, array $replacements = []): self
     {
-        $replacements = $this->getReplacements($options);
-
         // README.md
         $content = strtr(file_get_contents($this->stubsDir.'/README.stub'), $replacements);
         file_put_contents($directory.'/README.md', $content);
@@ -101,23 +111,11 @@ abstract class Provider implements ProviderInterface
         $content = file_get_contents($this->stubsDir.'/docs/docs.stub');
         file_put_contents($directory.'/docs/docs.md', $content);
 
-        // composer.json
+        // declaration.
         $content = strtr(file_get_contents($this->stubsDir.'/providers/'.$this->getFileName().'.stub'), $replacements);
-        file_put_contents($directory.'/'.$this->getFileName().'.json', $content);
+        file_put_contents($directory.'/'.$this->getFileName(), $content);
 
         return $this;
-    }
-
-    /**
-     * Add final tasks to finis initializing package.
-     *
-     * @param string $directory
-     * @param array $options
-     * @return void
-     */
-    protected function finalTasks(string $directory, array $options = []): void
-    {
-        //
     }
 
     /**

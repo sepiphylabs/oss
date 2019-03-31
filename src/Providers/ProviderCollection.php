@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace SepiphyLabs\Oss\Providers;
+namespace Sericode\Oss\Providers;
 
-use SepiphyLabs\Oss\Providers\Exceptions\NotFoundException;
+use Sericode\Oss\Providers\Exceptions\NotFoundException;
 
 class ProviderCollection implements ProviderCollectionInterface
 {

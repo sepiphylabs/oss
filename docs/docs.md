@@ -5,10 +5,10 @@
 
 ## Installation
 
-Install the `sepiphylabs/oss` package globally via composer.
+Install the `sericode/oss` package globally via composer.
 
 ```bash
-composer global require `sepiphylabs/oss`
+composer global require `sericode/oss`
 ```
 
 Export the global composer bin directory to the `PATH` environment variable.

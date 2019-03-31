@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\SepiphyLabs\Oss;
+namespace Tests\Sericode\Oss;
 
 use PHPUnit\Framework\TestCase;
-use SepiphyLabs\Oss\Application;
+use Sericode\Oss\Application;
 
 class ApplicationTest extends TestCase
 {

@@ -1,13 +1,13 @@
 {
-    "name": "sepiphylabs/oss",
+    "name": "sericode/oss",
     "description": "Create your own open-sourced software package easily.",
     "type": "library",
     "license": "MIT",
     "keywords": ["sepiphylabs", "sepiphy", "oss"],
-    "homepage": "https://github.com/sepiphylabs/oss",
+    "homepage": "https://github.com/sericode/oss",
     "support": {
-        "issues": "https://github.com/sepiphylabs/oss/issues",
-        "source": "https://github.com/sepiphylabs/oss"
+        "issues": "https://github.com/sericode/oss/issues",
+        "source": "https://github.com/sericode/oss"
     },
     "authors": [
         {
@@ -27,16 +27,16 @@
         "mockery/mockery": "^1.2",
         "phpstan/phpstan": "^0.11.4",
         "phpunit/phpunit": "^8.0",
-        "xuanquynh/php-codesniffer": "^1.0"
+        "xuanquynh/php-codesniffer": "^1.1.3"
     },
     "autoload": {
         "psr-4": {
-            "SepiphyLabs\\Oss\\": "src/SepiphyLabs/Oss/"
+            "Sericode\\Oss\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\SepiphyLabs\\Oss\\": "tests/SepiphyLabs/Oss/"
+            "Tests\\Sericode\\Oss\\": "tests/"
         }
     },
     "scripts": {

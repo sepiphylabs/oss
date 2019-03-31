@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\SepiphyLabs\Oss\Providers;
+namespace Tests\Sericode\Oss\Providers;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
-use SepiphyLabs\Oss\Providers\ProviderCollection;
-use SepiphyLabs\Oss\Providers\ProviderInterface;
-use SepiphyLabs\Oss\Providers\Exceptions\NotFoundException;
+use Sericode\Oss\Providers\ProviderCollection;
+use Sericode\Oss\Providers\ProviderInterface;
+use Sericode\Oss\Providers\Exceptions\NotFoundException;
 
 class ProviderCollectionTest extends TestCase
 {

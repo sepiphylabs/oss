@@ -2,7 +2,7 @@
 <?php
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -18,5 +18,5 @@ if (is_file($autoloadFile = __DIR__.'/../vendor/autoload.php')) {
     die('You must set up the project dependencies.'.PHP_EOL);
 }
 
-$application = new SepiphyLabs\Oss\Application;
+$application = new Sericode\Oss\Application;
 $application->run();

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\SepiphyLabs\Oss\Providers;
+namespace Tests\Sericode\Oss\Providers;
 
 use PHPUnit\Framework\TestCase;
-use SepiphyLabs\Oss\Providers\ComposerProvider;
+use Sericode\Oss\Providers\ComposerProvider;
 
 class ComposerProviderTest extends TestCase
 {
@@ -34,6 +34,6 @@ class ComposerProviderTest extends TestCase
     {
         $provider = new ComposerProvider;
 
-        $this->assertSame('composer', $provider->getFileName());
+        $this->assertSame('composer.json', $provider->getFileName());
     }
 }

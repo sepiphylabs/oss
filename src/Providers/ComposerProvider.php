@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 /*
- * This file is part of the SepiphyLabs package.
+ * This file is part of the Sericode package.
  *
  * (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace SepiphyLabs\Oss\Providers;
+namespace Sericode\Oss\Providers;
 
 class ComposerProvider extends Provider
 {
@@ -34,7 +34,7 @@ class ComposerProvider extends Provider
      */
     public function getFileName(): string
     {
-        return 'composer';
+        return 'composer.json';
     }
 
     /**
@@ -45,13 +45,5 @@ class ComposerProvider extends Provider
         return array_merge(parent::needs(), [
             //
         ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function finalTasks(string $directory, array $options = []): void
-    {
-        //
     }
 }
