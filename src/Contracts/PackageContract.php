@@ -16,7 +16,7 @@ interface PackageContract
     /**
      * @return string
      */
-    public function getName(): string;
+    public function getType(): string;
 
     /**
      * @return string

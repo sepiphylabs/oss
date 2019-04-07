@@ -16,7 +16,7 @@ class PhpPackage extends Package
     /**
      * {@inheritdoc}
      */
-    public function getName(): string
+    public function getType(): string
     {
         return 'php';
     }
@@ -37,5 +37,13 @@ class PhpPackage extends Package
         return array_merge(parent::needs(), [
             //
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function init(string $directory, array $options = []): void
+    {
+        parent::init($directory, $options);
     }
 }

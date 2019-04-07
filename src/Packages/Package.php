@@ -114,7 +114,7 @@ abstract class Package implements PackageContract
         file_put_contents($directory.'/docs/docs.md', $content);
 
         // declaration.
-        $content = strtr(file_get_contents($this->stubsDir.'/providers/'.$this->getFileName().'.stub'), $replacements);
+        $content = strtr(file_get_contents($this->stubsDir.'/types/'.$this->getFileName().'.stub'), $replacements);
         file_put_contents($directory.'/'.$this->getFileName(), $content);
 
         return $this;

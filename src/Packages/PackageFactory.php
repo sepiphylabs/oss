@@ -13,6 +13,7 @@ namespace Sericode\Oss\Packages;
 
 use Sericode\Oss\Contracts\PackageContract;
 use Sericode\Oss\Contracts\PackageFactoryContract;
+use Sericode\Oss\Packages\Exceptions\NotFoundException;
 
 class PackageFactory implements PackageFactoryContract
 {
@@ -41,16 +42,16 @@ class PackageFactory implements PackageFactoryContract
     /**
      * {@inheritdoc}
      */
-    public function find(string $name): PackageContract
+    public function find(string $type): PackageContract
     {
         foreach ($this->packages as $package) {
-            if ($package->getName() === $name) {
+            if ($package->getType() === $type) {
                 return $package;
             }
         }
 
         throw new NotFoundException(
-            sprintf('The "%s" package was not found.', $name)
+            sprintf('The "%s" package type was not found.', $type)
         );
     }
 }

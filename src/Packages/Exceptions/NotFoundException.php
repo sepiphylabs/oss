@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sericode\Oss\Vendors\Exceptions;
+namespace Sericode\Oss\Packages\Exceptions;
 
 use Exception;
 

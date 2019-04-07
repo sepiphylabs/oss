@@ -12,8 +12,10 @@
 namespace Sericode\Oss\Commands;
 
 use Sepiphy\PHPTools\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
+use Sericode\Oss\Contracts\PackageContract;
 use Sericode\Oss\Contracts\PackageFactoryContract;
+use Symfony\Component\Console\Input\InputArgument;
+use Sericode\Oss\Packages\Exceptions\NotFoundException;
 
 class InitCommand extends Command
 {
@@ -23,10 +25,7 @@ class InitCommand extends Command
     protected $packages;
 
     /**
-     * Create a new InitCommand instance.
-     *
      * @param PackageFactoryContract $packages
-     * @return void
      */
     public function __construct(PackageFactoryContract $packages)
     {
@@ -52,18 +51,9 @@ class InitCommand extends Command
      */
     protected function fire()
     {
-        $names = [];
+        $package = $this->getPackage();
 
-        foreach ($this->packages->all() as $package) {
-            $names[] = $package->getName();
-        }
-
-        $name = $this->output->choice('What kind of package do you want to create?', $names);
-
-        $package = $this->packages->find($name);
-
-        $options = [];
-        $listing = [];
+        $options = $listing = [];
 
         foreach ($package->needs() as [$key, $question, $default]) {
             $options[$key] = $value = $this->output->ask($question, $default);
@@ -74,10 +64,27 @@ class InitCommand extends Command
 
         $package->init($directory, $options);
 
-        $this->output->success('Created package successully.');
+        $this->output->success(sprintf('Created package successully at %s.', $directory));
 
         $this->output->note('Check your package information here:');
 
         $this->output->listing($listing);
+    }
+
+    /**
+     * @return PackageContract
+     * @throws NotFoundException
+     */
+    protected function getPackage(): PackageContract
+    {
+        $types = [];
+
+        foreach ($this->packages->all() as $package) {
+            $types[] = $package->getType();
+        }
+
+        $name = $this->output->choice('What type of package do you want to create?', $types);
+
+        return $this->packages->find($name);
     }
 }
