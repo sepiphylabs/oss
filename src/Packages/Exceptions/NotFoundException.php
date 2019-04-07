@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Sericode\Oss\Providers\Exceptions;
+namespace Sericode\Oss\Vendors\Exceptions;
 
-use Throwable;
+use Exception;
 
-interface ExceptionInterface extends Throwable
+class NotFoundException extends Exception
 {
     //
 }

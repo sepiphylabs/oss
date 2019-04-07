@@ -11,29 +11,17 @@
 
 namespace Sericode\Oss;
 
-use Sericode\Oss\Commands\InitCommand;
-use Sericode\Oss\Providers\ComposerProvider;
-use Sericode\Oss\Providers\ProviderCollection;
-use Symfony\Component\Console\Application as BaseApplication;
+use Sepiphy\PHPTools\Console\Application as SepiphyApplication;
 
-class Application extends BaseApplication
+class Application extends SepiphyApplication
 {
+    public const NAME = 'OSS (Open-Sourced Software)';
+    public const VERSION = '1.0-dev';
+
     /**
-     * Create a new Application instance.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public function __construct()
-    {
-        parent::__construct('Oss', 'v1.0-dev');
-
-        $composer = new ComposerProvider;
-        $composer->setStubsDir(realpath(__DIR__.'/../resources/stubs'));
-
-        $providers = new ProviderCollection([$composer]);
-
-        $this->add(new InitCommand($providers));
-
-        return $this;
-    }
+    protected $providers = [
+        \Sericode\Oss\Providers\PackageServiceProvider::class,
+    ];
 }

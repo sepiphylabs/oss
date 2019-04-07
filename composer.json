@@ -19,8 +19,7 @@
     ],
     "require": {
         "php": "^7.1.3",
-        "symfony/console": "^4.2",
-        "sepiphy/phptools": "^0.3"
+        "sepiphy/phptools": "dev-master"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.14",
@@ -54,8 +53,8 @@
         ]
     },
     "scripts-descriptions": {
-        "fix": "Fix coding convention by \"php-cs-fixer\" and \"phpcbf\" scripts.",
-        "test": "Check coding convention and static analysis. Finally, Run the tests."
+        "fix": "Fix coding convention.",
+        "test": "Test coding and unit."
     },
     "extra": {
         "branch-alias": {
@@ -66,7 +65,5 @@
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "dev",
     "prefer-stable": true
-
 }

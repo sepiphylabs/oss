@@ -9,9 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Sericode\Oss\Providers;
+namespace Sericode\Oss\Packages;
 
-abstract class Provider implements ProviderInterface
+use Sericode\Oss\Contracts\PackageContract;
+
+abstract class Package implements PackageContract
 {
     /**
      * @var string
@@ -53,7 +55,7 @@ abstract class Provider implements ProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function initPackage(string $directory, array $options = []): void
+    public function init(string $directory, array $options = []): void
     {
         $replacements = $this->getReplacements($options);
 

@@ -1,7 +1,6 @@
 ## Requirements
 
 - PHP ^7.1.3
-- Composer *
 
 ## Installation
 

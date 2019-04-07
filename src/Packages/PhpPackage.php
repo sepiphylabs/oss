@@ -9,24 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Sericode\Oss\Providers;
+namespace Sericode\Oss\Packages;
 
-class ComposerProvider extends Provider
+class PhpPackage extends Package
 {
     /**
      * {@inheritdoc}
      */
     public function getName(): string
     {
-        return 'composer';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAliases(): array
-    {
-        return ['php'];
+        return 'php';
     }
 
     /**
