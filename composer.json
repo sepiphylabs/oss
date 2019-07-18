@@ -1,67 +1,46 @@
 {
-    "name": "sericode/oss",
-    "description": "Create your own open-sourced software package easily.",
+    "name": "xuanquynh/php-package-template",
+    "description": "PHP Package Template",
     "type": "library",
     "license": "MIT",
     "keywords": ["sepiphylabs", "sepiphy", "oss"],
-    "homepage": "https://github.com/sericode/oss",
+    "homepage": "https://github.com/xuanquynh/php-package-template",
     "support": {
-        "issues": "https://github.com/sericode/oss/issues",
-        "source": "https://github.com/sericode/oss"
+        "issues": "https://github.com/xuanquynh/php-package-template/issues",
+        "source": "https://github.com/xuanquynh/php-package-template"
     },
     "authors": [
         {
             "name": "Quynh Xuan Nguyen",
-            "email": "seriquynh@gmail.com",
-            "homepage": "https://seriquynh.com",
-            "role": "Software Developer"
+            "email": "seriquynh@gmail.com"
         }
     ],
     "require": {
-        "php": "^7.1.3",
-        "sepiphy/phptools": "dev-master"
+        "php": "^7.1.3"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.14",
-        "mockery/mockery": "^1.2",
-        "phpstan/phpstan": "^0.11.4",
-        "phpunit/phpunit": "^8.0",
-        "xuanquynh/php-codesniffer": "^1.1.3"
+        "sepiphy/testing": "^0.5.0"
     },
     "autoload": {
         "psr-4": {
-            "Sericode\\Oss\\": "src/"
+            "XuanQuynh\\PackageTemplate\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Sericode\\Oss\\": "tests/"
+            "Tests\\Unit\\XuanQuynh\\PackageTemplate\\": "tests/unit/"
         }
     },
     "scripts": {
-        "post-autoload-dump": [
-            "XuanQuynh\\CodeSniffer\\ComposerScripts::postAutoloadDump"
-        ],
-        "fix": [
-            "@php vendor/bin/php-cs-fixer fix",
-            "@php vendor/bin/phpcbf src tests --standard=XuanQuynh"
-        ],
         "test": [
-            "@php vendor/bin/phpcs src tests --standard=XuanQuynh",
-            "@php vendor/bin/phpstan analyse src --no-progress",
-            "@php vendor/bin/phpunit"
+            "phpunit --colors=always"
         ]
-    },
-    "scripts-descriptions": {
-        "fix": "Fix coding convention.",
-        "test": "Test coding and unit."
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
     },
-    "bin": ["bin/oss"],
     "config": {
         "sort-packages": true
     },
