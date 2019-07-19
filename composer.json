@@ -1,9 +1,9 @@
 {
     "name": "xuanquynh/php-package-template",
     "description": "PHP Package Template",
-    "type": "library",
+    "type": "project",
     "license": "MIT",
-    "keywords": ["sepiphylabs", "sepiphy", "oss"],
+    "keywords": ["template", "skeleton", "package"],
     "homepage": "https://github.com/xuanquynh/php-package-template",
     "support": {
         "issues": "https://github.com/xuanquynh/php-package-template/issues",
@@ -32,6 +32,9 @@
         }
     },
     "scripts": {
+        "fix": [
+            "php-cs-fixer fix --ansi"
+        ],
         "test": [
             "phpunit --colors=always"
         ]
