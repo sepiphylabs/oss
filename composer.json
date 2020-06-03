@@ -1,13 +1,13 @@
 {
-    "name": "xuanquynh/php-package-template",
+    "name": "seriquynh/php-package-template",
     "description": "PHP Package Template",
     "type": "project",
     "license": "MIT",
     "keywords": ["template", "skeleton", "package"],
-    "homepage": "https://github.com/xuanquynh/php-package-template",
+    "homepage": "https://github.com/seriquynh/php-package-template",
     "support": {
-        "issues": "https://github.com/xuanquynh/php-package-template/issues",
-        "source": "https://github.com/xuanquynh/php-package-template"
+        "issues": "https://github.com/seriquynh/php-package-template/issues",
+        "source": "https://github.com/seriquynh/php-package-template"
     },
     "authors": [
         {
@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "XuanQuynh\\PackageTemplate\\": "src/"
+            "Seriquynh\\PackageTemplate\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Unit\\XuanQuynh\\PackageTemplate\\": "tests/unit/"
+            "Tests\\Unit\\Seriquynh\\PackageTemplate\\": "tests/unit/"
         }
     },
     "scripts": {

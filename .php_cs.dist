@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<EOF
-This file is part of the XuanQuynh package.
+This file is part of the Seriquynh package.
 
 (c) Quynh Xuan Nguyen <seriquynh@gmail.com>
 
