@@ -16,10 +16,10 @@
         }
     ],
     "require": {
-        "php": "^7.1.3"
+        "php": ">=7.1.3"
     },
     "require-dev": {
-        "sepiphy/testing": "^0.6.0"
+        "sepiphy/testing": "^1.0-dev"
     },
     "autoload": {
         "psr-4": {
@@ -41,7 +41,6 @@
             "phpstan analyse src tests --no-progress --ansi",
             "phpunit --colors=always"
         ]
-
     },
     "extra": {
         "branch-alias": {
