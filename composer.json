@@ -44,10 +44,10 @@
     "scripts": {
         "fix": [
             "php-cs-fixer fix --ansi",
-            "sphpcbf src tests --standard=Seriquynh --colors"
+            "sphpcbf src tests --standard=Sepiphy --colors"
         ],
         "lint": [
-            "sphpcs src tests --standard=Seriquynh --colors",
+            "sphpcs src tests --standard=Sepiphy --colors",
             "phpstan analyse src tests --no-progress --ansi"
         ],
         "test": [
