@@ -3,7 +3,11 @@
     "description": "PHP Package Template",
     "type": "project",
     "license": "MIT",
-    "keywords": ["template", "skeleton", "package"],
+    "keywords": [
+        "template",
+        "skeleton",
+        "package"
+    ],
     "homepage": "https://github.com/seriquynh/php-package-template",
     "support": {
         "issues": "https://github.com/seriquynh/php-package-template/issues",
@@ -19,7 +23,13 @@
         "php": ">=7.1.3"
     },
     "require-dev": {
-        "sepiphy/testing": "^1.0-dev"
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "mockery/mockery": "^1.2",
+        "phpstan/phpstan": "^0.12.19",
+        "phpunit/phpunit": "^8.3",
+        "sensiolabs/security-checker": "^6.0",
+        "symfony/var-dumper": "^4.3",
+        "sepiphy/php-codesniffer": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -34,11 +44,13 @@
     "scripts": {
         "fix": [
             "php-cs-fixer fix --ansi",
-            "xphpcbf src tests --standard=XuanQuynh --colors"
+            "sphpcbf src tests --standard=Seriquynh --colors"
+        ],
+        "lint": [
+            "sphpcs src tests --standard=Seriquynh --colors",
+            "phpstan analyse src tests --no-progress --ansi"
         ],
         "test": [
-            "xphpcs src tests --standard=XuanQuynh --colors",
-            "phpstan analyse src tests --no-progress --ansi",
             "phpunit --colors=always"
         ]
     },
