@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\Unit\Seriquynh\PackageTemplate;
+namespace Tests\Seriquynh\PackageTemplate;
 
 use PHPUnit\Framework\TestCase;
 use Seriquynh\PackageTemplate\Example;
